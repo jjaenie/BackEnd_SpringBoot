@@ -4,6 +4,7 @@ import com.restapi.emp.entity.Department;
 import com.restapi.emp.entity.Employee;
 import com.restapi.emp.repository.DepartmentRepository;
 import com.restapi.emp.repository.EmployeeRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -13,13 +14,14 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-@Profile("prod")  //Insert Runner가 동작하지 않게 하고 싶으면 현재 Profile과 다르게 주면 됨
+@Profile("local")  //Insert Runner가 동작하지 않게 하고 싶으면 현재 Profile과 다르게 주면 됨
+@RequiredArgsConstructor
 public class EmpDepInsertRunner implements ApplicationRunner {
-    @Autowired
-    DepartmentRepository departmentRepository;
+    //@Autowired
+    final DepartmentRepository departmentRepository;
 
-    @Autowired
-    EmployeeRepository employeeRepository;
+    //@Autowired
+    final EmployeeRepository employeeRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
